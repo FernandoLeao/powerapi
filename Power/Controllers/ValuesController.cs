@@ -13,7 +13,7 @@ namespace Power.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "Fernando", "Leão   " };
+            return new string[] { "teste", "teste" };
         }
 
         // GET api/values/5
