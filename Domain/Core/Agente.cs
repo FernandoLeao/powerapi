@@ -11,7 +11,7 @@ namespace Domain.Core
         public virtual int NecessidadeDiariaEnergia { get; set; }
 
 
-        public virtual ICollection<Equipamento> Tickets
+        public virtual ICollection<Equipamento> Equipamentos
         {
             get { return _equipamentos ?? (_equipamentos = new List<Equipamento>()); }
             set { _equipamentos = value; }

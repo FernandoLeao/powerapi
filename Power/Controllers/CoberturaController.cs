@@ -3,17 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Power.Model;
+using Power.Services;
 
 namespace Power.Controllers
 {
     [Route("api/[controller]")]
-    public class ValuesController : Controller
+    public class CoberturaController : Controller
     {
+        private readonly IDistribuirCargaService _distribuirCargaService;
+        private readonly IFileService _fileService;
+        public CoberturaController(IDistribuirCargaService distribuirCargaService, IFileService fileService)
+        {
+            _distribuirCargaService = distribuirCargaService;
+            _fileService = fileService;
+        }
+
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> Get()
         {
-            return new string[] { "teste", "teste" };
+            var cobertura =  await _distribuirCargaService.CalcularCobertura();
+            var stream  = _fileService.CriarStream(cobertura);
+            var response = File(stream, "application/octet-stream"); // FileStreamResult
+            return response;
         }
 
         // GET api/values/5

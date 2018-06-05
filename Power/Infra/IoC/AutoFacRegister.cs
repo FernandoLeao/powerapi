@@ -1,10 +1,10 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
+using Power.Infra.DataBase.Connection;
+using Power.Repository;
+using Power.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Power.Infra.IoC
 {
@@ -25,18 +25,16 @@ namespace Power.Infra.IoC
 
         private static void RegisterInfraServices(ContainerBuilder builder)
         {
-            //builder.RegisterType<ToEntityMapperService>().As<IToEntityMapperService>().InstancePerLifetimeScope();
-
-            ////bd
-            //builder.RegisterGeneric(typeof(EfRepository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
-            //builder.RegisterType<ConnectionStringProvider>().As<IConnectionStringProvider>().SingleInstance();
-            //builder.RegisterType<SqlConnectionFactory>().As<ISqlConnectionFactory>().SingleInstance();
-            //builder.RegisterType<FactoryModelService>().As<IFactoryModelService>().InstancePerLifetimeScope();
-
+            //bd
+            builder.RegisterGeneric(typeof(EfRepository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
+            builder.RegisterType<ConnectionStringProvider>().As<IConnectionStringProvider>().SingleInstance();
+            builder.RegisterType<SqlConnectionFactory>().As<ISqlConnectionFactory>().SingleInstance();
         }
 
         private static void RegisterBussinessService(ContainerBuilder builder)
         {
+            builder.RegisterType<DistribuirCargaService>().As<IDistribuirCargaService>().InstancePerLifetimeScope();
+            builder.RegisterType<FileService>().As<IFileService>().InstancePerLifetimeScope();
 
         }
     }

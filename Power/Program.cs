@@ -28,6 +28,8 @@ namespace Power
 
                    config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                        .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
+
+                       
                })
                .UseIISIntegration()
                .UseDefaultServiceProvider((context, options) =>
@@ -35,6 +37,7 @@ namespace Power
                    options.ValidateScopes = context.HostingEnvironment.IsDevelopment();
                })
                .UseStartup<Startup>()
+               
                .Build();
         }
     }
