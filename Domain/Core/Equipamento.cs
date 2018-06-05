@@ -10,7 +10,7 @@ namespace Domain.Core
         public int CapacidadeTransmissao { get; set; }
         public bool Ativo { get; set; }
 
-        public Agente Agente { get; set; }
-        public int AgenteId { get; set; }
+        public virtual Agente Agente { get; set; }
+        public virtual int AgenteId { get; set; }
     }
 }

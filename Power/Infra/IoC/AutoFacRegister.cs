@@ -35,6 +35,7 @@ namespace Power.Infra.IoC
         {
             builder.RegisterType<DistribuirCargaService>().As<IDistribuirCargaService>().InstancePerLifetimeScope();
             builder.RegisterType<FileService>().As<IFileService>().InstancePerLifetimeScope();
+            builder.RegisterType<EquipamentoService>().As<IEquipamentoService>().InstancePerLifetimeScope();
 
         }
     }
